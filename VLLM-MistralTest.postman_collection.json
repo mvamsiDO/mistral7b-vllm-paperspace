@@ -1,0 +1,123 @@
+{
+	"info": {
+		"_postman_id": "270590ea-e271-4302-9c35-4839de36cba5",
+		"name": "VLLM-MistralTest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33246779"
+	},
+	"item": [
+		{
+			"name": "List models",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://<staticIP>:8000/v1/models",
+					"protocol": "http",
+					"host": [
+						"<staticIP>"
+					],
+					"port": "8000",
+					"path": [
+						"v1",
+						"models"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "text conversation thread example",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"model\": \"mistralai/Mistral-7B-Instruct-v0.2\",\n    \"messages\": [\n        {\n            \"role\": \"user\",\n            \"content\": \"Provide three short summaries of the given essay. Each summary should be clear, concise, and capture the key points of the essay. Aim for around 2-3 sentences for each summary. Also be prepared to answer some questions on the essay after this. Essay: Dealing with broken bones, bogged vehicles, aircraft engine failures and calling in the Royal Flying Doctor Service are all in a day’s work for Graham and Sandra Scott who own Australia’s most remote pub. When the couple wanted a change from farming six years ago they bought an outback pub. Selling one of the family farms near Mansfield in Victoria, they moved to the top end of South Australia, near the Northern Territory border.\\\"We were looking to do something towards the end of our working life other than farming, and we needed a change, but we thought we wanted to travel\\\" Graham says. Instead, they lodged at Mt Dare on the border of the Simpson Desert, where their closest neighbour is 70 kilometres away, in a family-run pub. Their daughter Shaynee and two sons help with the business. The hotel, south of Finke and the Old Ghan trail, at the end of a rough 4WD track is a popular watering hole for visitors to the Simpson’s dry, red, sandy desert, the world’s longest parallel dune system that stretches across 176,000 square kilometres of Australia’s red heart. Its extreme remoteness means the pub is equipped with two dirt airstrips, a light aircraft and an all-terrain Mercedes Unimog truck. Its wide verandahs, workshop, accommodation units and campground are surrounded by a high levy bank to fend off occasional flood waters from the desert. Like its city counterparts, it was hit by the vagaries of COVID. \\\"We were down 90 per cent\\\" says Shaynee. \\\"And then we had the floods hit as well. It’s been a bit tricky for us \\\" but despite that \\\"we love it, we absolutely love it\\\" Not surprisingly, running South Australia’s most isolated pub is not all desert sunsets and cold beer. \\\"It’s an adventure here every day. Not always a welcome one, but there is an adventure here every day,\\\" Shaynee says.\"\n        },\n        {\n            \"role\": \"assistant\",\n            \"content\": \"Summary 1:\\n\\nGraham and Sandra Scott, seeking a change from farming, bought a remote outback pub in South Australia near the Northern Territory border. The pub, located at Mt Dare on the Simpson Desert, is known for its extreme isolation, with the closest neighbor 70 kilometers away. The pub is a popular stop for tourists and is equipped with two dirt airstrips, a light aircraft, and an all-terrain truck. The family-run business includes their daughter Shaynee and two sons, and has faced challenges from COVID-19 and occasional flooding.\\n\\nSummary 2:\\n\\nGraham and Sandra Scott bought Mt Dare pub in South Australia to escape farming and experience something new. Isolated with the nearest neighbor 70 kilometers away, the pub catering to tourists in the Simpson Desert region is well-equipped with essential facilities such as airstrips, a light aircraft, and an all-terrain truck to cater to visitors. Operating the pub is an adventure, and the family has faced challenges from COVID-19 and flooding.\\n\\nSummary 3:\\n\\nThe Scotts, a farming family, sought a change from their routine and bought Mt Dare pub in South Australia. Located in the Simpson Desert, the pub is isolated, and the family manages it along with their children. The business includes essential facilities like airstrips, a light aircraft, and an all-terrain truck to cater to tourists. The Scotts have faced challenges from COVID-19 and flooding but continue to enjoy running the pub despite the difficulties.\"\n        },\n        {\n            \"role\": \"user\",\n            \"content\": \"these are really good summaries. Now on to some question and answers, what is the name of the daughter?\"\n        },\n        {\n            \"role\": \"assistant\",\n            \"content\": \" Shaynee is the name of the daughter who helps run Mt Dare pub with her parents, Graham and Sandra Scott.\"\n        },\n        {\n            \"role\": \"user\",\n            \"content\": \"what was the loss of business they witnessed in the recent past?\"\n        }\n    ],\n    \"temperature\": 0.7,\n    \"top_p\": 1,\n    \"max_tokens\": 512,\n    \"stream\": false,\n    \"safe_prompt\": false,\n    \"random_seed\": 1337\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://<staticIP>:8000/v1/chat/completions",
+					"protocol": "http",
+					"host": [
+						"<staticIP>"
+					],
+					"port": "8000",
+					"path": [
+						"v1",
+						"chat",
+						"completions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "simple text q and a",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"model\": \"mistralai/Mistral-7B-Instruct-v0.2\",\n  \"messages\": [\n    {\n      \"role\": \"user\",\n      \"content\": \"Keep your answers to 20 words or less. What is the plot of movie Lion king ? \"\n    }\n  ],\n  \"temperature\": 0.7,\n  \"top_p\": 1,\n  \"max_tokens\": 512,\n  \"stream\": false,\n  \"safe_prompt\": false,\n  \"random_seed\": 1337\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://<staticIP>:8000/v1/chat/completions",
+					"protocol": "http",
+					"host": [
+						"<staticIP>"
+					],
+					"port": "8000",
+					"path": [
+						"v1",
+						"chat",
+						"completions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "json response example",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"model\": \"mistralai/Mistral-7B-Instruct-v0.2\",\n    \"messages\": [\n        {\n            \"role\": \"user\",\n            \"content\": \"Who is the best French painter? Answer in JSON only and do not add any text at the end. Double check if the json is formatted correctly. If there are multiple answers then make sure to return an array of json objects.\"\n        }\n    ],\n    \"response_format\": {\n        \"type\": \"json_object\"\n    },\n    \"temperature\": 0.7,\n    \"top_p\": 1,\n    \"max_tokens\": 512,\n    \"stream\": false,\n    \"safe_prompt\": false,\n    \"random_seed\": 1337\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://<staticIP>:8000/v1/chat/completions",
+					"protocol": "http",
+					"host": [
+						"<staticIP>"
+					],
+					"port": "8000",
+					"path": [
+						"v1",
+						"chat",
+						"completions"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
